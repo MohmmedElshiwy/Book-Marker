@@ -2,7 +2,10 @@ var allSite = JSON.parse(localStorage.getItem("site")) || [];
 var btnAdd = document.getElementById("addSite");
 var btnReset=document.getElementById("reset");
 
-
+onload=function(){
+       siteName.value="";
+    siteUrl.value="";
+}
 
 var siteName = document.getElementById("book-mark");
 var siteUrl = document.getElementById("Website-url");
