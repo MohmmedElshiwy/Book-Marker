@@ -1,9 +1,22 @@
 var allSite = JSON.parse(localStorage.getItem("site")) || [];
 var btnAdd = document.getElementById("addSite");
+var btnReset=document.getElementById("reset");
+
+
 
 var siteName = document.getElementById("book-mark");
 var siteUrl = document.getElementById("Website-url");
 
+  var regex = /^(https?:\/\/)?(www\.)?\w{2,}\.(com|net|org)\/?$/;
+
+  btnReset.addEventListener("click",function(){
+
+    siteName.value="";
+    siteUrl.value="";
+      siteName.style.border = "";
+  siteUrl.style.border = "";
+
+})
 siteName.addEventListener("input", function () {
   if (siteName.value.trim() == "") {
     siteName.style.border = "";
@@ -14,7 +27,6 @@ siteName.addEventListener("input", function () {
   }
 });
 siteUrl.addEventListener("input", function () {
-  var regex = /\w{3,}\.(com|net|org)\/?$/;
 
   if (siteUrl.value.trim() == "") {
     siteUrl.style.border = "";
@@ -26,24 +38,20 @@ siteUrl.addEventListener("input", function () {
 });
 
 
-
 var currentIndex = -1;
 btnAdd.onclick = function () {
 
 
-  siteName.style.border = "";
-  siteUrl.style.border = "";
+
 
   if (siteName.value === "" || siteUrl.value === "") {
-    alert("Please fill in all fields");
-
+    showModal("Please fill in all fields");
     return;
   }
 
   if (siteName.value.length < 3) {
-    alert("Site Name must be 3 characters or more");
-    siteName.style.border = "2px solid red";
-    return;
+    showModal("Site Name must be 3 characters or more");    siteName.style.border = "2px solid red";
+    return alert("wrong URL");
   }
 
   var site = {
@@ -51,12 +59,14 @@ btnAdd.onclick = function () {
        name: siteName.value,
     url: siteUrl.value,
   };
+  if (!regex.test(siteUrl.value)) {
+        showModal("Please enter a valid URL ending with .com, .net or .org");
+return;
+}
 
 if (currentIndex === -1) {
-    // إضافة عنصر جديد
     allSite.push(site);
   } else {
-    // تعديل عنصر موجود
     allSite[currentIndex] = site;
     currentIndex = -1;
     btnAdd.textContent = "Submit";
@@ -99,3 +109,13 @@ function editSite(index) {
   currentIndex = index;
   btnAdd.textContent = "Update";
 }
+
+
+
+function showModal(message) {
+  document.getElementById("modalMsg").textContent = message;
+  var modal = new bootstrap.Modal(document.getElementById("errorModal"));
+  modal.show();
+}
+
+

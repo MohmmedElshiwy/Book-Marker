@@ -48,6 +48,7 @@
             -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
             }
+          
         
 
 </style>
@@ -68,16 +69,34 @@
 
             <h2 class="position-relative ">
              <i class="fa-solid fa-bookmark"></i>   Bookmark your favorite sites <i class="fa-solid fa-bookmark"></i></h2>
+
+<!-- Modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="errorModalLabel">Validation Error</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="modalMsg">
+        <!-- Message will be injected here -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="form text-start">
     
     <label class="form-label mt-5" for="book-mark"><i class="fa-solid fa-book-bookmark"></i>  Site Name</label>
        <input class="form-control" type="text" placeholder="Book Mark Name" id="book-mark" required>
-    <label class="form-label mt-5" for="Website-url"><i class="fa-solid fa-link"></i> Site Name</label>
+    <label class="form-label mt-5" for="Website-url"><i class="fa-solid fa-link"></i> URL Name</label>
        <input class="form-control" type="text" placeholder="Website URL" id="Website-url">
 
 
     </div>
     <button id="addSite" class="btn btn-outline-success mt-3 m-auto w-25 ">Submit</button>
+    <button id="reset" class="btn btn-outline-danger mt-3 m-auto w-25 ">Reset</button>
 
             <div class="border"></div>
         </div>
