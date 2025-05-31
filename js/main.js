@@ -49,10 +49,11 @@ btnAdd.onclick = function () {
     return;
   }
 
-  if (siteName.value.length < 3) {
-    showModal("Site Name must be 3 characters or more");    siteName.style.border = "2px solid red";
-    return alert("wrong URL");
-  }
+ if (siteName.value.length < 3) {
+  showModal("Site Name must be 3 characters or more");
+  siteName.style.border = "2px solid red";
+  return;
+}
 
   var site = {
     id: currentIndex === -1 ? allSite.length + 1 : allSite[currentIndex].id, 
